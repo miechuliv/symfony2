@@ -69,4 +69,27 @@ class Tag
     {
         return $this->value;
     }
+
+    /**
+     * Set post
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Post $post
+     * @return Tag
+     */
+    public function setPost(\Miechuliv\ImageForumBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Miechuliv\ImageForumBundle\Entity\Post 
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
 }

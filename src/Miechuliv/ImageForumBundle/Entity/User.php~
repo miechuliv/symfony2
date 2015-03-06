@@ -77,6 +77,20 @@ class User
      */
     private $lastLogged;
 
+     /**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author")
+     **/
+    private $posts;
+    
+     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="author")
+     **/
+    private $comments;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="author")
+     **/
+    private $ratings;
     
 
     /**

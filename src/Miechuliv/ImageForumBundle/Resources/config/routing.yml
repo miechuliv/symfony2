@@ -1,3 +1,7 @@
+miechuliv_image_forum_user:
+    resource: "@MiechulivImageForumBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
 miechuliv_image_forum_homepage:
     path:     /hello/{name}
     defaults: { _controller: MiechulivImageForumBundle:Default:index }

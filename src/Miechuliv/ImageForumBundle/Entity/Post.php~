@@ -305,4 +305,146 @@ class Post
     {
         return $this->parentPost;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Category $categories
+     * @return Post
+     */
+    public function addCategory(\Miechuliv\ImageForumBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Category $categories
+     */
+    public function removeCategory(\Miechuliv\ImageForumBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Comment $comments
+     * @return Post
+     */
+    public function addComment(\Miechuliv\ImageForumBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Miechuliv\ImageForumBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add ratings
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Rating $ratings
+     * @return Post
+     */
+    public function addRating(\Miechuliv\ImageForumBundle\Entity\Rating $ratings)
+    {
+        $this->ratings[] = $ratings;
+
+        return $this;
+    }
+
+    /**
+     * Remove ratings
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Rating $ratings
+     */
+    public function removeRating(\Miechuliv\ImageForumBundle\Entity\Rating $ratings)
+    {
+        $this->ratings->removeElement($ratings);
+    }
+
+    /**
+     * Get ratings
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRatings()
+    {
+        return $this->ratings;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Tag $tags
+     * @return Post
+     */
+    public function addTag(\Miechuliv\ImageForumBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Miechuliv\ImageForumBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Miechuliv\ImageForumBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
 }

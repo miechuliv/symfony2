@@ -1,0 +1,23 @@
+Miechuliv\ImageForumBundle\Entity\Post:
+    properties:
+        title:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        image_path:
+            - NotBlank: ~
+        author:
+            - Valid: ~
+            
+   
+Miechuliv\ImageForumBundle\Entity\User:
+    properties:
+        displayName:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        email:
+            - NotBlank: ~
+            - Email: ~
+        password:
+            - NotBlank: ~

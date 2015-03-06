@@ -4,6 +4,7 @@ namespace Miechuliv\ImageForumBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * CategoryRepository
  *
