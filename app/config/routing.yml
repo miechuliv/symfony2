@@ -1,0 +1,7 @@
+miechuliv_image_forum:
+    resource: "@MiechulivImageForumBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation

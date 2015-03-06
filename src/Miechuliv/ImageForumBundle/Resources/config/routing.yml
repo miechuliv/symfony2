@@ -1,0 +1,3 @@
+miechuliv_image_forum_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MiechulivImageForumBundle:Default:index }

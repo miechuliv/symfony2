@@ -1,0 +1,4 @@
+services:
+#    miechuliv_image_forum.example:
+#        class: Miechuliv\ImageForumBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
