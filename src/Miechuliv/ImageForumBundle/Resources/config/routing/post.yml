@@ -1,0 +1,30 @@
+post:
+    path:     /
+    defaults: { _controller: "MiechulivImageForumBundle:Post:index" }
+
+post_show:
+    path:     /{id}/show
+    defaults: { _controller: "MiechulivImageForumBundle:Post:show" }
+
+post_new:
+    path:     /new
+    defaults: { _controller: "MiechulivImageForumBundle:Post:new" }
+
+post_create:
+    path:     /create
+    defaults: { _controller: "MiechulivImageForumBundle:Post:create" }
+    requirements: { _method: post }
+
+post_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MiechulivImageForumBundle:Post:edit" }
+
+post_update:
+    path:     /{id}/update
+    defaults: { _controller: "MiechulivImageForumBundle:Post:update" }
+    requirements: { _method: post|put }
+
+post_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MiechulivImageForumBundle:Post:delete" }
+    requirements: { _method: post|delete }

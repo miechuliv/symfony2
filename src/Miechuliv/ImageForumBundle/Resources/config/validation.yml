@@ -4,15 +4,16 @@ Miechuliv\ImageForumBundle\Entity\Post:
             - NotBlank: ~
             - Length:
                 min: 3
-        image_path:
+        imagePath:
             - NotBlank: ~
         author:
+            - NotBlank: ~
             - Valid: ~
             
    
 Miechuliv\ImageForumBundle\Entity\User:
     properties:
-        displayName:
+        username:
             - NotBlank: ~
             - Length:
                 min: 3

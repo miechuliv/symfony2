@@ -3,6 +3,7 @@
 namespace Miechuliv\ImageForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Miechuliv\ImageForumBundle\Entity\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -21,13 +22,12 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="display_name", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255)
      */
-    private $displayName;
+    private $username;
 
     /**
      * @var string
@@ -39,7 +39,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=32)
+     * @ORM\Column(name="password", type="string", length=64)
      */
     private $password;
 
@@ -110,9 +110,9 @@ class User
      * @param string $displayName
      * @return User
      */
-    public function setDisplayName($displayName)
+    public function setUsername($username)
     {
-        $this->displayName = $displayName;
+        $this->username = $username;
 
         return $this;
     }
@@ -122,9 +122,9 @@ class User
      *
      * @return string 
      */
-    public function getDisplayName()
+    public function getUsername()
     {
-        return $this->displayName;
+        return $this->username;
     }
 
     /**
@@ -193,7 +193,8 @@ class User
      */
     public function getSalt()
     {
-        return $this->salt;
+        //return $this->salt;
+        return NULL;
     }
 
     /**
@@ -396,5 +397,53 @@ class User
         return $this->ratings;
     }
     
+    
+    
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
+    
+    public function __toString() {
+        return $this->username;
+    }
     
 }
