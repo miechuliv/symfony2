@@ -22,7 +22,8 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "sonata-project/media-bundle": "~2.3",
-        "vlabs/media-bundle": "dev-master"
+        "vlabs/media-bundle": "dev-master",
+        "ircmaxell/password-compat": "~1.0.3"
         
         
     },

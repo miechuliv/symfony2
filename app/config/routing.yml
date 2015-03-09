@@ -7,4 +7,13 @@ app:
     type:     annotation
     
     
+login:
+    pattern:   /login
+    defaults: { _controller: "MiechulivImageForumBundle:User:login" }
+    
+login_check:
+    pattern:   /login_check
+    
+logout:
+    path:     /logout
 

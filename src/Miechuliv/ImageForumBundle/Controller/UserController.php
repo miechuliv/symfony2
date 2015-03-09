@@ -8,6 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Miechuliv\ImageForumBundle\Entity\User;
 use Miechuliv\ImageForumBundle\Form\UserType;
 
+use Symfony\Component\Security\Core\SecurityContext;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 /**
  * User controller.
  *
@@ -15,6 +20,35 @@ use Miechuliv\ImageForumBundle\Form\UserType;
 class UserController extends Controller
 {
 
+    
+    public function loginAction(Request $request)
+    {
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        } else {
+            $error = $request->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
+        }
+
+        return $this->render('MiechulivImageForumBundle:User:login.html.twig', array(
+            'last_username' => $request->getSession()->get(SecurityContext::LAST_USERNAME),
+            'error'         => $error,
+        ));
+        
+    }
+    
+   
+    public function securityCheckAction()
+    {
+        
+        // The security layer will intercept this request
+    }
+
+   
+    public function logoutAction()
+    {
+        // The security layer will intercept this request
+    }
+    
     /**
      * Lists all User entities.
      *
@@ -38,6 +72,13 @@ class UserController extends Controller
         $entity = new User();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        
+        $data = $form->getData();
+        
+        $encoder = $this->container->get('security.password_encoder');
+        $encoded = $encoder->encodePassword($entity, $data->getPassword());
+        $entity->setPassword( $encoded );
+        $entity->setSalt('');
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
