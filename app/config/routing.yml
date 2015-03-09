@@ -5,3 +5,6 @@ miechuliv_image_forum:
 app:
     resource: @AppBundle/Controller/
     type:     annotation
+    
+    
+

@@ -71,3 +71,10 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    
+vlabs_media:
+    image_cache:
+        cache_dir: "image/cache"
+    mapping: 
+        image_entity:
+          class: Miechuliv\ImageForumBundle\Entity\Image

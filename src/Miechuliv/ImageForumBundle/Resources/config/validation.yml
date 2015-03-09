@@ -4,11 +4,10 @@ Miechuliv\ImageForumBundle\Entity\Post:
             - NotBlank: ~
             - Length:
                 min: 3
-        imagePath:
-            - NotBlank: ~
+        
         author:
             - NotBlank: ~
-            - Valid: ~
+           
             
    
 Miechuliv\ImageForumBundle\Entity\User:

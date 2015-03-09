@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <th>Imagepath</th>
-                <td>{{ entity.imagePath }}</td>
+                <td>{{ entity.image|vlabs_filter('resize', { 'width' : 300, 'height' : 300 })|vlabs_media('image') }}</td>
             </tr>
             <tr>
                 <th>Active</th>

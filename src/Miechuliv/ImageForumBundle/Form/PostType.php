@@ -16,12 +16,15 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('imagePath')
+            
          
             
             ->add('author')
             
             ->add('categories')
+                ->add('image', 'vlabs_file', array(
+                'required' => false
+            ))
         ;
     }
     
