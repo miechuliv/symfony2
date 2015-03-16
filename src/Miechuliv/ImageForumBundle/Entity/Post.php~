@@ -3,6 +3,8 @@
 namespace Miechuliv\ImageForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vlabs\MediaBundle\Annotation\Vlabs;
 
 /**
  * Post
@@ -29,11 +31,17 @@ class Post
     private $title;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="image_path", type="string", length=255)
-     */
-    private $imagePath;
+    * @var VlabsFile
+    *
+    * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"}, orphanRemoval=true))
+    * @ORM\JoinColumns({
+    *   @ORM\JoinColumn(name="image", referencedColumnName="id")
+    * })
+    * 
+    * @Vlabs\Media(identifier="image_entity", upload_dir="/var/www/html/Mgag/files/images")
+    * @Assert\Valid()
+    */
+   private $image;
 
     /**
      * @var boolean
@@ -123,27 +131,27 @@ class Post
     }
 
     /**
-     * Set imagePath
-     *
-     * @param string $imagePath
-     * @return Post
-     */
-    public function setImagePath($imagePath)
-    {
-        $this->imagePath = $imagePath;
+    * Set image
+    *
+    * @param Miechuliv\ImageForumBundle\Entity\Image $image
+    * @return Post
+    */
+   public function setImage(Image $image = null)
+   {
+       $this->image = $image;
 
-        return $this;
-    }
+       return $this;
+   }
 
-    /**
-     * Get imagePath
-     *
-     * @return string 
-     */
-    public function getImagePath()
-    {
-        return $this->imagePath;
-    }
+   /**
+    * Get image
+    *
+    * @return Miechuliv\ImageForumBundle\Entity\Image 
+    */
+   public function getImage()
+   {
+       return $this->image;
+}
 
     /**
      * Set active
@@ -446,5 +454,9 @@ class Post
     public function getTags()
     {
         return $this->tags;
+    }
+    
+    public function __toString() {
+        return $this->title;
     }
 }

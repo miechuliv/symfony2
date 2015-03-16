@@ -79,10 +79,26 @@ class UserController extends Controller
         $encoded = $encoder->encodePassword($entity, $data->getPassword());
         $entity->setPassword( $encoded );
         $entity->setSalt('');
+        $entity->setActive(1);
+        $now = new \DateTime();
+        $entity->setDateAdded($now);
+        $entity->setDateModified($now);
+        $entity->setLastLogged($now);
+        // standardowa role user
+        $em = $this->getDoctrine()->getManager();
+
+        $role = $em->getRepository('MiechulivImageForumBundle:Role')->findBy(array('name' => 'ROLE_USER'));
+        
+        $entity->addRole($role);
+        
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+            // trzeba tez zapisac z drugiej strony relacji
+            $role->addUser($entity);
+            $em->persist($role);
+            
             $em->flush();
 
             return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
