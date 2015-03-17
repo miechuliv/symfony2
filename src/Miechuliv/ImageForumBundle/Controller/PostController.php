@@ -23,7 +23,13 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MiechulivImageForumBundle:Post')->findAll();
+        $entities = false;
+        // przykladowe ograniczanie dostepu dla danej roli
+       // if($this->get('security.context')->isGranted('ROLE_ADMIN'))
+       // {
+         $entities = $em->getRepository('MiechulivImageForumBundle:Post')->findAll();
+       // }
+        
 
         return $this->render('MiechulivImageForumBundle:Post:index.html.twig', array(
             'entities' => $entities,

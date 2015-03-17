@@ -410,7 +410,17 @@ class User implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        return $this->roles;
+        // role musza byc zwrucone w formie tablicy
+        $rolesArray = array();
+        if(!empty($this->roles))
+        {
+            foreach($this->roles as $role)
+            {
+                $rolesArray[] = $role->getName();
+            }
+        }
+        
+        return $rolesArray;
     }
 
     /**

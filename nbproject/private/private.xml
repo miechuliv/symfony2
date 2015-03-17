@@ -3,20 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/User.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Resources/config/validation.yml</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Resources/views/User/new.html.twig</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Resources/views/User/login.html.twig</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Form/UserType.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Controller/UserController.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Resources/views/layout.html.twig</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Resources/views/User/show.html.twig</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Resources/views/User/index.html.twig</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Resources/views/User/edit.html.twig</file>
-            <file>file:/var/www/html/Mgag/app/AppKernel.php</file>
             <file>file:/var/www/html/Mgag/composer.json</file>
-            <file>file:/var/www/html/Mgag/app/config/config.yml</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Tests/Controller/UserControllerTest.php</file>
+            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/Post.php</file>
+            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/Category.php</file>
+            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/User.php</file>
+            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Controller/PostController.php</file>
+            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Controller/UserController.php</file>
+            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/Role.php</file>
         </group>
     </open-files>
 </project-private>

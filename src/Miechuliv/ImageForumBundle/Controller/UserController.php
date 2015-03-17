@@ -87,7 +87,7 @@ class UserController extends Controller
         // standardowa role user
         $em = $this->getDoctrine()->getManager();
 
-        $role = $em->getRepository('MiechulivImageForumBundle:Role')->findOneBy(array('name' => 'USER_ROLE'));
+        $role = $em->getRepository('MiechulivImageForumBundle:Role')->findOneBy(array('name' => 'ROLE_USER'));
         
         $entity->addRole($role);
         
