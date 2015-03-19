@@ -3,13 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/Mgag/composer.json</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/Post.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/Category.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/User.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Controller/PostController.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Controller/UserController.php</file>
-            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Entity/Role.php</file>
+            <file>file:/var/www/html/Mgag/src/Miechuliv/ImageForumBundle/Tests/Controller/PostControllerTest.php</file>
         </group>
     </open-files>
 </project-private>

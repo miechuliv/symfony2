@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Miechuliv\ImageForumBundle\Entity\Post;
 use Miechuliv\ImageForumBundle\Form\PostType;
+use Symfony\Component\Form\FormError;
 
 /**
  * Post controller.
@@ -15,6 +16,11 @@ use Miechuliv\ImageForumBundle\Form\PostType;
 class PostController extends Controller
 {
 
+    private function _canEditPost($post)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        return ($this->get('security.context')->isGranted('ROLE_ADMIN') || $user->getId() == $post->getAuthor()->getId());
+    }
     /**
      * Lists all Post entities.
      *
@@ -194,21 +200,40 @@ class PostController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
-
+        
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
+            $editForm = $this->createEditForm($entity);
+            $editForm->handleRequest($request);
+        
+        
+        
+        // jesli nie jestes adminem albo nie jestes tworca tego postu to nie mozesz go edytowac
+        if(!$this->_canEditPost($entity))
+        {
+           
+            $editForm->get('title')->addError(new FormError(
+                    $this->get('translator')->trans('This post is not yours and you cannot edit it')
+            ));
+            
         }
+        else
+        {
+            
+
+            if ($editForm->isValid()) {
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
+            }
+        }
+
+        
 
         return $this->render('MiechulivImageForumBundle:Post:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+           
         ));
     }
     /**
@@ -219,14 +244,18 @@ class PostController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MiechulivImageForumBundle:Post')->find($id);
-
-            if (!$entity) {
+        
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('MiechulivImageForumBundle:Post')->find($id);
+        
+        if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Post entity.');
             }
+
+        if ($this->_canEditPost($entity) && $form->isValid()) {
+            
+
+            
 
             $em->remove($entity);
             $em->flush();

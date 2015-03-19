@@ -3,6 +3,8 @@
 namespace Miechuliv\ImageForumBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class PostControllerTest extends WebTestCase
 {
@@ -52,4 +54,40 @@ class PostControllerTest extends WebTestCase
     }
 
     */
+    
+    public function testAddPostByAdmin()
+    {
+        // Create a new client to browse the application
+        $client = static::createClient();
+
+        // Create a new entry in the database
+        $crawler = $client->request('GET', '/post/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /post/");
+        $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
+
+        // Fill in the form and submit it
+        $form = $crawler->selectButton('Create')->form(array(
+            'miechuliv_imageforumbundle_post[field_name]'  => 'Test',
+            // ... other fields to fill
+        ));
+
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+
+        // Check data in the show view
+        $this->assertGreaterThan(0, $crawler->filter('td:contains("Test")')->count(), 'Missing element td:contains("Test")');
+    }
+    
+    private function logIn()
+    {
+        $session = $this->client->getContainer()->get('session');
+
+        $firewall = 'secured_area';
+        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_ADMIN'));
+        $session->set('_security_'.$firewall, serialize($token));
+        $session->save();
+
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $this->client->getCookieJar()->set($cookie);
+    }
 }

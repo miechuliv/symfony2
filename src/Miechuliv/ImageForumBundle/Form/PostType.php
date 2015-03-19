@@ -19,12 +19,13 @@ class PostType extends AbstractType
             
          
             
-            ->add('author')
+            //->add('author')
             
             ->add('categories')
                 ->add('image', 'vlabs_file', array(
                 'required' => false
             ))
+            ->add('tags');
         ;
     }
     
